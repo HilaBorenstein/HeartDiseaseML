@@ -1,0 +1,77 @@
+
+A. General Information
+
+	Amount of observations: 253680
+	Test size: 0.2
+
+B. Preprocessing -Feature Selection
+
+   a.Identify missing values with treshold of 0.6
+       0 features with greater than 0.60 missing values.
+		[]
+   b.Find single unique value
+       0 features with a single unique value.
+		[]
+   c.Find collinear features with threshold of 0.975
+       0 features with a correlation magnitude greater than 0.97.
+		[]
+   d.Find zero importance features
+       14 features with zero importance after one-hot encoding.
+		['Fruits', 'Veggies', 'HvyAlcoholConsump', 'PhysActivity', 'NoDocbcCost', 'GenHlth', 'Diabetes', 'PhysHlth', 'DiffWalk', 'Sex', 'Age', 'Stroke', 'Smoker', 'AnyHealthcare']
+   e.Find low importance features
+       7 features required for cumulative importance of 0.99 after one hot encoding.
+       15 features do not contribute to cumulative importance of 0.99.
+		['Stroke', 'Age', 'Sex', 'DiffWalk', 'PhysHlth', 'Diabetes', 'HvyAlcoholConsump', 'NoDocbcCost', 'PhysActivity', 'Smoker', 'Veggies', 'Fruits', 'HighBP', 'GenHlth', 'AnyHealthcare']
+
+C. Model Information
+
+	Model Name:Random Forest
+	Number of trees: 800
+	Minimum samples for splitting node: 2
+	Maximum features used for each tree: 17
+
+D. Model Results
+
+	a. Classification Report
+
+		              precision    recall  f1-score   support
+		
+		           0       0.91      0.99      0.95     45950
+		           1       0.60      0.07      0.13      4786
+		
+		   micro avg       0.91      0.91      0.91     50736
+		   macro avg       0.76      0.53      0.54     50736
+		weighted avg       0.88      0.91      0.87     50736
+		
+	b. Confusion Matrix
+
+		       0    1
+		0  45720  230
+		1   4443  343
+
+	c. Model accuracy: 90.79%
+
+E. Features Importance
+
+	                   importance
+	GenHlth              0.331476
+	Age                  0.211864
+	Stroke               0.108825
+	HighBP               0.073534
+	Sex                  0.071852
+	HighChol             0.060620
+	DiffWalk             0.047392
+	BMI                  0.018918
+	Diabetes             0.018085
+	Income               0.010888
+	PhysHlth             0.010794
+	Smoker               0.010264
+	MentHlth             0.007512
+	Education            0.006303
+	NoDocbcCost          0.004033
+	Fruits               0.001703
+	Veggies              0.001596
+	PhysActivity         0.001559
+	AnyHealthcare        0.001006
+	CholCheck            0.000952
+	HvyAlcoholConsump    0.000826

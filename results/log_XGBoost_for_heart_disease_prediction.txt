@@ -1,0 +1,77 @@
+
+A. General Information
+
+	Amount of observations: 253680
+	Test size: 0.2
+
+B. Preprocessing -Feature Selection
+
+   a.Identify missing values with treshold of 0.6
+       0 features with greater than 0.60 missing values.
+		[]
+   b.Find single unique value
+       0 features with a single unique value.
+		[]
+   c.Find collinear features with threshold of 0.975
+       0 features with a correlation magnitude greater than 0.97.
+		[]
+   d.Find zero importance features
+       12 features with zero importance after one-hot encoding.
+		['Income', 'Education', 'Age', 'Sex', 'DiffWalk', 'NoDocbcCost', 'Smoker', 'HvyAlcoholConsump', 'Veggies', 'Fruits', 'Diabetes', 'AnyHealthcare']
+   e.Find low importance features
+       9 features required for cumulative importance of 0.99 after one hot encoding.
+       13 features do not contribute to cumulative importance of 0.99.
+		['Fruits', 'Veggies', 'HvyAlcoholConsump', 'Smoker', 'NoDocbcCost', 'Income', 'Sex', 'Age', 'Education', 'Diabetes', 'MentHlth', 'DiffWalk', 'AnyHealthcare']
+
+C. Model Information
+
+	Model Name:Extreme Gradient Boosting
+	Number of boosting stages: 100
+	learning rate: 0.1
+	Maximum depth: 7
+
+D. Model Results
+
+	a. Classification Report
+
+		              precision    recall  f1-score   support
+		
+		           0       0.92      0.99      0.95     46022
+		           1       0.59      0.11      0.18      4714
+		
+		   micro avg       0.91      0.91      0.91     50736
+		   macro avg       0.75      0.55      0.57     50736
+		weighted avg       0.89      0.91      0.88     50736
+		
+	b. Confusion Matrix
+
+		       0    1
+		0  45659  363
+		1   4201  513
+
+	c. Model accuracy: 91.00%
+
+E. Features Importance
+
+	                   importance
+	HighBP               0.234321
+	GenHlth              0.207372
+	Age                  0.105701
+	Stroke               0.070961
+	Sex                  0.070470
+	HighChol             0.064402
+	DiffWalk             0.047908
+	Smoker               0.027672
+	Diabetes             0.021246
+	CholCheck            0.018852
+	HvyAlcoholConsump    0.016002
+	Income               0.014460
+	PhysHlth             0.012714
+	NoDocbcCost          0.012211
+	AnyHealthcare        0.011658
+	Education            0.011381
+	MentHlth             0.011033
+	BMI                  0.010856
+	PhysActivity         0.010596
+	Fruits               0.010480
+	Veggies              0.009704

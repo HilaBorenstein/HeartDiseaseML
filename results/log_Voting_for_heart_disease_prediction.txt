@@ -1,0 +1,55 @@
+
+A. General Information
+
+	Amount of observations: 253680
+	Test size: 0.2
+
+B. Preprocessing -Feature Selection
+
+   a.Identify missing values with treshold of 0.6
+       0 features with greater than 0.60 missing values.
+		[]
+   b.Find single unique value
+       0 features with a single unique value.
+		[]
+   c.Find collinear features with threshold of 0.975
+       0 features with a correlation magnitude greater than 0.97.
+		[]
+   d.Find zero importance features
+       14 features with zero importance after one-hot encoding.
+		['Income', 'Education', 'Age', 'Sex', 'DiffWalk', 'HighBP', 'GenHlth', 'NoDocbcCost', 'HvyAlcoholConsump', 'Fruits', 'PhysActivity', 'Stroke', 'Smoker', 'AnyHealthcare']
+   e.Find low importance features
+       7 features required for cumulative importance of 0.99 after one hot encoding.
+       15 features do not contribute to cumulative importance of 0.99.
+		['Stroke', 'PhysActivity', 'Fruits', 'HvyAlcoholConsump', 'NoDocbcCost', 'GenHlth', 'Age', 'DiffWalk', 'Sex', 'Smoker', 'Education', 'Income', 'PhysHlth', 'HighBP', 'AnyHealthcare']
+
+C. Model Information
+
+	Model Name:Voting
+	Models Names: AdaBoost, GBoost, XGBoost
+
+D. Model Results
+
+	a. Classification Report
+
+		              precision    recall  f1-score   support
+		
+		           0       0.91      0.99      0.95     45976
+		           1       0.54      0.10      0.17      4760
+		
+		   micro avg       0.91      0.91      0.91     50736
+		   macro avg       0.73      0.54      0.56     50736
+		weighted avg       0.88      0.91      0.88     50736
+		
+	b. Confusion Matrix
+
+		       0    1
+		0  45583  393
+		1   4296  464
+
+	c. Model accuracy:
+
+		Total Accuracy: 90.76%
+		Model: AdaBoost, Accuracy: 89.52%
+		Model: GBoost, Accuracy: 90.68%
+		Model: XGBoost, Accuracy: 90.78%

@@ -1,0 +1,77 @@
+
+A. General Information
+
+	Amount of observations: 253680
+	Test size: 0.2
+
+B. Preprocessing -Feature Selection
+
+   a.Identify missing values with treshold of 0.6
+       0 features with greater than 0.60 missing values.
+		[]
+   b.Find single unique value
+       0 features with a single unique value.
+		[]
+   c.Find collinear features with threshold of 0.975
+       0 features with a correlation magnitude greater than 0.97.
+		[]
+   d.Find zero importance features
+       16 features with zero importance after one-hot encoding.
+		['Stroke', 'Income', 'Education', 'Age', 'Sex', 'DiffWalk', 'PhysHlth', 'GenHlth', 'Diabetes', 'NoDocbcCost', 'Smoker', 'HvyAlcoholConsump', 'Veggies', 'Fruits', 'PhysActivity', 'AnyHealthcare']
+   e.Find low importance features
+       5 features required for cumulative importance of 0.99 after one hot encoding.
+       17 features do not contribute to cumulative importance of 0.99.
+		['Fruits', 'Veggies', 'HvyAlcoholConsump', 'Smoker', 'NoDocbcCost', 'Diabetes', 'GenHlth', 'Sex', 'DiffWalk', 'PhysActivity', 'Age', 'Education', 'Income', 'Stroke', 'CholCheck', 'PhysHlth', 'AnyHealthcare']
+
+C. Model Information
+
+	Model Name:AdaBoost
+	Number of trees: 250
+	learning rate: 0.3
+	Minimum samples for splitting node: 2
+
+D. Model Results
+
+	a. Classification Report
+
+		              precision    recall  f1-score   support
+		
+		           0       0.92      0.96      0.94     45977
+		           1       0.34      0.20      0.25      4759
+		
+		   micro avg       0.89      0.89      0.89     50736
+		   macro avg       0.63      0.58      0.60     50736
+		weighted avg       0.87      0.89      0.88     50736
+		
+	b. Confusion Matrix
+
+		       0     1
+		0  44168  1809
+		1   3811   948
+
+	c. Model accuracy: 88.92%
+
+E. Features Importance
+
+	                   importance
+	BMI                  0.183119
+	Age                  0.165186
+	Income               0.092202
+	GenHlth              0.077792
+	MentHlth             0.073935
+	PhysHlth             0.065929
+	Education            0.059050
+	Smoker               0.034887
+	Fruits               0.029251
+	Sex                  0.027712
+	HighBP               0.026923
+	Diabetes             0.024895
+	HighChol             0.023658
+	PhysActivity         0.023509
+	Veggies              0.021215
+	DiffWalk             0.016554
+	Stroke               0.015053
+	NoDocbcCost          0.011641
+	HvyAlcoholConsump    0.009707
+	CholCheck            0.009060
+	AnyHealthcare        0.008722

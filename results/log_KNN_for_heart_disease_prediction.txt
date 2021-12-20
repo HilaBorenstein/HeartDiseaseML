@@ -1,0 +1,44 @@
+
+A. General Information
+
+	Amount of observations: 253680
+	Test size: 0.2
+
+B. Preprocessing -Feature Selection
+
+   a.Identify missing values with treshold of 0.6
+       0 features with greater than 0.60 missing values.
+		[]
+   b.Find single unique value
+       0 features with a single unique value.
+		[]
+   c.Find collinear features with threshold of 0.975
+       0 features with a correlation magnitude greater than 0.97.
+		[]
+
+C. Model Information
+
+	Model Name:K Nearest Neighbors
+	Number of neighbors: 15
+	Weights: distance
+
+D. Model Results
+
+	a. Classification Report
+
+		              precision    recall  f1-score   support
+		
+		           0       0.91      0.99      0.95     45952
+		           1       0.35      0.04      0.08      4784
+		
+		   micro avg       0.90      0.90      0.90     50736
+		   macro avg       0.63      0.52      0.51     50736
+		weighted avg       0.86      0.90      0.87     50736
+		
+	b. Confusion Matrix
+
+		       0    1
+		0  45555  397
+		1   4571  213
+
+	c. Model accuracy: 90.21%

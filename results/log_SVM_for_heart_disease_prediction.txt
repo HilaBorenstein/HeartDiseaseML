@@ -1,0 +1,51 @@
+
+A. General Information
+
+	Amount of observations: 253680
+	Test size: 0.2
+
+B. Preprocessing -Feature Selection
+
+   a.Identify missing values with treshold of 0.6
+       0 features with greater than 0.60 missing values.
+		[]
+   b.Find single unique value
+       0 features with a single unique value.
+		[]
+   c.Find collinear features with threshold of 0.975
+       0 features with a correlation magnitude greater than 0.97.
+		[]
+   d.Find zero importance features
+       14 features with zero importance after one-hot encoding.
+		['Education', 'Age', 'Sex', 'DiffWalk', 'PhysHlth', 'NoDocbcCost', 'Smoker', 'HvyAlcoholConsump', 'Veggies', 'Fruits', 'PhysActivity', 'Diabetes', 'Stroke', 'AnyHealthcare']
+   e.Find low importance features
+       7 features required for cumulative importance of 0.99 after one hot encoding.
+       15 features do not contribute to cumulative importance of 0.99.
+		['Diabetes', 'PhysActivity', 'Fruits', 'Veggies', 'HvyAlcoholConsump', 'Smoker', 'Sex', 'PhysHlth', 'DiffWalk', 'Stroke', 'Age', 'Education', 'MentHlth', 'NoDocbcCost', 'AnyHealthcare']
+
+C. Model Information
+
+	Model Name:Support Vectors Machine
+	Kernel: rbf
+	Maximum iterations: 5000
+
+D. Model Results
+
+	a. Classification Report
+
+		              precision    recall  f1-score   support
+		
+		           0       0.91      0.93      0.92     46042
+		           1       0.15      0.12      0.14      4694
+		
+		   micro avg       0.86      0.86      0.86     50736
+		   macro avg       0.53      0.53      0.53     50736
+		weighted avg       0.84      0.86      0.85     50736
+		
+	b. Confusion Matrix
+
+		       0     1
+		0  42843  3199
+		1   4120   574
+
+	c. Model accuracy: 85.57%
