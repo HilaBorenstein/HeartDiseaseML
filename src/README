@@ -4,28 +4,7 @@
 
 containing the files
 
-1. a. Files names- 
-		mergingFilesTest1.py
-		mergingFilesTest2.py
-		mergingFilesTest3.py
-		PreprocessingDataset.py
-
-	b.Description:
-		The above forth files is for creating the six files of:
-		"Test1AllFilesMerged.csv",
-		"Test2AllFilesMerged.csv", 
-		"Test3AllFilesMerged.csv",
-		Test1AllFilesMerged_no_missing_values.csv, 
-		Test2AllFilesMerged_no_missing_values.csv, 
-		Test3AllFilesMerged_no_missing_values.csv
-		if you are already copied them from 
-		https://drive.google.com/open?id=1PsOdQHzB3_e0Du76Bc-UZrDNhbRjj8g8
-		no need to run them again.
-		if not run them in the above order.
-		The files of <Test<i>>AllFilesMerged_no_missing_values.csv 
-		are the all observation of test<i> in one csv file which is more easy to handle with in the code.
-
-2. a. File name- 
+1. a.  File name- 
 		FeatureSelection.py
 
 	b.Description:
@@ -38,7 +17,7 @@ containing the files
 			Collinear features are features that are highly correlated with one another.
 
 
-3. a. Files names- 
+2. a. Files names- 
 		KNeighbors.py
 		SVM.py
 		mergingFilesTest3.py
@@ -53,7 +32,7 @@ containing the files
 		These file is uses by the Main program and containig the code for each alogrithm.
 		More explanations about the code can be found under etc/hila project.docx 
 
-4. a. Files names- 
+3. a. Files names- 
 		Main.py
 
 	b.description:
@@ -68,106 +47,18 @@ Hila Work
 ###########################################################################
 
 
-1. I took Tom files (The student that workes on the project previously) of 
-	"<test<i>\vv_av_st_wt_da_ws_dfc_transposed_experiment_<experiment id>_<locust id>.txt"
-	and i merged them to 3 csv files (which is more easy to work with python) per the test type
-	"Test1AllFilesMerged.csv", "Test2AllFilesMerged.csv", "Test3AllFilesMerged.csv"
-	Each csv file  is located in a different folder by test type (test<i>)
-
-	[Each file contains all observation of all locusts for all experiments of the current test. For example, "Test1AllFilesMerged.csv" contains 1,100,000 observations – there is 20 experiments for test1 with only 1 locust each time and for each experiment there is 55,000 relevant frames (each frame is an observation) so we have total 20*1*55,000=1,100,000 observations]
-
-2. In order to achieve better performance for my models I filled the missing features values 
-	and saved them  into files calls:
-	Test1AllFilesMerged_no_missing_values.csv,
-	Test2AllFilesMerged_no_missing_values.csv, 
-	Test3AllFilesMerged_no_missing_values.csv
-	These files can be found under folders of test1, test2, and test3 respectively.
-
-	In order to receive these files,run the following command:
-	python src/PreprocessingDataset.py
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-important: 
-if you want to add features and run my learning process 
-	a. edit allt files of "<test<i>\vv_av_st_wt_da_ws_dfc_transposed_experiment_<experiment id>_<locust id>.txt"
-		with more features .
-	b. run the following commands:
-		$ python src/mergingFilesTest1.py
-		$ python src/mergingFilesTest2.py
-		$ python src/mergingFilesTest3.py
-		$ python src/ PreprocessingDataset.py
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 3. In order to run model and hypothesis please run the command:
 
-	python src/Main.py --Hypothesis <a> --Model <b> --Dataset_size <x> --Test_size <y>
+	python src/Main.py --Model <a> --Test_size <b>
 
 	where:
-	<a> is Hypothesis name (H1 for test1 vs test2 and H2 for test2 vs test3)
-	<b> is Model name can be one of the following: KNN, SVM, DT, RF,
+
+	<a> is Model name can be one of the following: KNN, SVM, DT, RF,
 	            Bagging, AdaBoost, GBoost, XGBoost, Voting.
-	<c> is dataset size – number between 2 to 2,200,0000. Default is 800,000 
-		which gives good accuracy in total time of lwss than one hour
-	<d> is test size , can be choose between 0.1 to 0.3
+	<b> is test size , can be choose between 0.1 to 0.3
 
 	For more inforamtion type command :python src/Main.py -h
 
-
-###########################################################################
-Tom Work (The student that worked on the project previously)
-###########################################################################
-First, we added additional data features to the original txt files:
-Wanting to add different extra features to each locust representation, I build a chain of scripts the makes adding features easy (located in the "src" folder):
-
-- "load_locust.py": Different methods to work, edit, write, read etc. the locust data located on the files in the experiment sets' folders
-- "learning_functions.py": Functions that are being used in each learning algorithm code without any diffs
-- "locust_results.py" - Different methods to represent the output of the learning method chosen to run on the data located on the folders.
-
-The following scripts were added to the "src" folder (And were run by the following order):
-- "transpose_locust_data.py" (marked as "transposed")- Transposes my original txt files so that instead of one long list of values, the txt file is reordered s.t on each line, the values and features of each frame are represented on the list (ordered like "locust_struct.png" + the new features are ordered by the order of running). The first line in each files is the id only...
-- "distance_from_center_locust_data.py" (marked as "dfc") - Adding to each frame line the distance of the locust from the center based on its (x,y) location
-- "walking_speed_locust_data.py" (marked as "ws") - Adding to each frame line the walking speed of the locust based on its (vx,vy) values
-- "delta_angle_locust_data.py" - Adding to each frame line the angle delta made by the locust from its previous frame (The first frame value is a default of 0)
-
-The following features are using the "bin" mechnism - clusters a sequence of frames in order to compute more
-complex features (averages on the value sequence, variance etc.) - more about it on the etc/project_summary file
-- "walking_time_locust_data.py" (marked as "wt") - Adding to each frame cluster the average walking time made on those frames by writing a default value of "none" (which is neglected in the learning process) in each of the n-1 first lines of the frame cluster + the average value written on the last frame of the frame cluster as part of the "bin" mechanism that was discussed on our meeting
-- "stoping_time_locust_data.py" (marked as "st") - Adding to each frame cluster the average stoping time made on those frames by writing a default value of "none" (which is neglected in the learning process) in each of the n-1 first lines of the frame cluster + the average value written on the last frame of the frame cluster as part of the "bin" mechanism that was discussed on our meeting
-- "angle_variance_locust_data.py" (marked as "av") - Adding to each frame cluster its angle variance of those frames by writing a default value of "none" (which is neglected in the learning process) in each of the n-1 first lines of the frame cluster + the variance value written on the last frame of the frame cluster as part of the "bin" mechanism that was discussed on our meeting
-- "velocity_variance_locust_data.py" (marked as "vv") - Adding to each frame cluster its velocity variance of those frames by writing a default value of "none" (which is neglected in the learning process) in each of the n-1 first lines of the frame cluster + the variance value written on the last frame of the frame cluster as part of the "bin" mechanism that was discussed on our meeting
-
-Resulting as the following files:
-vv_av_st_wt_da_ws_dfc_transposed_experiment_<experiment id>_locust_<locust id>.txt 
-In each of the experiment sets' folders
-
-Next, lets talk about learning networks implemntations:
-Learning methods implementations on the "src" folder:
-- "locust_svm.py": Representation of a SVM learning mechanism with an RBF kernel implementation
-
-- "locust_linear_regression.py": Representation of a linear regression mechanism
-
-- "locust_soft_decision_tree.py": Representation of a soft decision tree learning mechanism
-
-- "locust_random_forest.py": Representation of a neural forest learning mechanism
-
-
-On each of the learning mechanism we can take each set of experiment sets, experiment ids and locust ids and work with each set of the original or additional features to get the best result and hopefuly learn more  about the hipothesises made by the research team based on their theoretical research (validate or disregard them in a more comupterized way...)
-
-With those learning methods and deaures we would like to asses the following theorems:
-- Hypothesis on test1 vs test 2:
-	- The average stoping time of locusts that are tested in a group is smaller than the average stoping time of a solitary locust
-	- The average walking speed of locusts that are tested in a group is smaller than the average stoping time of a solitary locust
-- Hypothesis on test2 vs test 3:
-	- Solitary locusts are less dense in their space than grouped locusts.
-	- Solitary locusts are tend to move less than grouped locusts.
-
-The different learning processes:
-In each learning alg. we can find different learning processes due to different sample pool choices:
- - One feature: Each sample is a vector of value of a specific feature and we learn one feature at a time
- 				(In the comparison between test1 and test2 we can divide those vectors due to the fact that the time factor is irrelevant)
- - Feature combination: Each sample is a represantation of a specific frame in the experiment of a single locust. The vector consists of the value of each feature in that frame.
- (More in the .docx project file)
 
 
 Possible future assignments for the project:
